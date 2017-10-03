@@ -13,8 +13,7 @@ import IGListKit
 final class Mainvc: JAViewController {
     
     override func loadView() {
-        self.view = MainView()
-        self.view.backgroundColor = UIColor.darkGray
+        self.view = MainView()        
         
     }
 }
