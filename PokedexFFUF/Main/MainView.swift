@@ -16,6 +16,9 @@ public final class MainView: JAView {
     let collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = UIColor.white
         return collectionView
     }()
     

@@ -10,7 +10,7 @@ import UIKit
 import Rapid
 import IGListKit
 
-final class Mainvc: JAViewController {
+final class Mainvc: JAViewController{
     
     unowned var rootView: MainView { return self.view as! MainView}
     unowned var collectionView: UICollectionView { return self.rootView.collectionView }
@@ -21,7 +21,34 @@ final class Mainvc: JAViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        
+        self.collectionView.register(MainCell.self, forCellWithReuseIdentifier: "Cell")
     }
 }
+
+
+extension Mainvc: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 200
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! MainCell
+        cell.backgroundColor = UIColor.orange
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let dimension = self.view.frame.size.width / 4.0
+        return CGSize(width: dimension, height: dimension)
+    }
+    
+}
+
+
 
