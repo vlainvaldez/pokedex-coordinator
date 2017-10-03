@@ -1,0 +1,26 @@
+{
+  "name": "Rapid",
+  "version": "0.2.0",
+  "summary": "A personal toolset I use in iOS Projects",
+  "homepage": "https://github.com/hooliooo/Rapid",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE.md"
+  },
+  "authors": {
+    "Julio Alorro": "alorro3@gmail.com"
+  },
+  "platforms": {
+    "ios": "9.3"
+  },
+  "source": {
+    "git": "https://github.com/hooliooo/Rapid.git",
+    "tag": "0.2.0"
+  },
+  "source_files": "Source/**/*.swift",
+  "frameworks": [
+    "UIKit",
+    "Foundation"
+  ],
+  "requires_arc": true
+}

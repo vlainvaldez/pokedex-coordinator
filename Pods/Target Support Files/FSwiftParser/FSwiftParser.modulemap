@@ -1,0 +1,6 @@
+framework module FSwiftParser {
+  umbrella header "FSwiftParser-umbrella.h"
+
+  export *
+  module * { export * }
+}
