@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import SnapKit
+import Rapid
 
 class MainCell: UICollectionViewCell {
+    
+    var pokemonIcon: PokemonIcon!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.setUpViews()
+        
     }
     
     var footerConstraints = [NSLayoutConstraint]()
@@ -43,10 +49,7 @@ class MainCell: UICollectionViewCell {
     
     func setUpViews(){
         
-        
         self.rpd.subviews(forAutoLayout: footerView, pokemonImageView)
-        
-//        addSubview(footerView)
         
         let footerViewBottom = footerView.bottomAnchor.constraint(equalTo: bottomAnchor)
         let footerViewWidth = footerView.widthAnchor.constraint(equalTo: widthAnchor)
@@ -65,8 +68,6 @@ class MainCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate(nameConstraints)
         
-//        addSubview(pokemonImageView)
-        
         pokemonImageView.snp.makeConstraints { (make) in
             make.top.equalTo(0)
             make.left.equalTo(0)
@@ -80,5 +81,18 @@ class MainCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+}
+
+extension MainCell: Configurable {
+    
+    public static var identifier: String = "MainCell"
+    
+    public func configure(with pokemonIcon: PokemonIcon) {
+        self.pokemonIcon = pokemonIcon
+        
+        self.pokemonImageView.image = UIImage(named: self.pokemonIcon.id)
+        self.nameLabel.text = self.pokemonIcon.name        
+    }
     
 }

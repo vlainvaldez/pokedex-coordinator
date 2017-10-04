@@ -14,8 +14,9 @@ import IGListKit
 public final class MainView: JAView {
     
     let collectionView: UICollectionView = {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        
+        let listCollectionLayout: ListCollectionViewLayout = ListCollectionViewLayout(stickyHeaders: false, topContentInset: 0, stretchToEdge: true)
+        let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout:listCollectionLayout )
         
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.white
@@ -42,3 +43,4 @@ public final class MainView: JAView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

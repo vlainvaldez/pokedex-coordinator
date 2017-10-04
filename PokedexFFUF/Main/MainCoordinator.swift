@@ -20,9 +20,20 @@ public final class MainCoordinator: AbstractCoordinator {
     
     public override func start() {
         self.navigationController.navigationBar.barTintColor = UIColor.yellow
-        let vc: Mainvc = Mainvc()
+        let csvPath: String? = Bundle.main.path(forResource: "pokemon", ofType: "csv")
         
-        self.navigationController.viewControllers = [vc]
+        do {
+            
+            let rawCSV: RawCSV = try RawCSV(filePath: csvPath)
+            let objects: [PokemonIcon] = rawCSV.rows.map { PokemonIcon(dict: $0) }
+            
+            let vc: Mainvc = Mainvc(objects: objects)
+            self.navigationController.viewControllers = [vc]
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
     }
 }
 
