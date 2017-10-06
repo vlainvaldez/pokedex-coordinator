@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Rapid
 
-class MainCell: UICollectionViewCell {
+final public class MainCell: UICollectionViewCell {
     
     var pokemonIcon: PokemonIcon!
     
@@ -77,7 +77,7 @@ class MainCell: UICollectionViewCell {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

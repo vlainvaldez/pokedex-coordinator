@@ -6,4 +6,8 @@
 //  Copyright © 2017 FFUF. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+public protocol MainVCDelegate: class {
+    func pokemonClicked(_ icon: PokemonIcon, view: MainView)
+}

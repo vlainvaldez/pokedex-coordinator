@@ -12,24 +12,26 @@ import IGListKit
 
 final class MainDataSource<Cell: UICollectionViewCell, Object: ListDiffable>: JAObject, ListAdapterDataSource where Cell: Configurable, Cell.Object == Object {
     
+    // MARK: Stored Properties
+    let objects: [Object]
+    fileprivate unowned let delegate: MainSectionControllerDelegate
+    
+    
     // MARK: Initializer
-    init( objects: [Object]) {
-//        self.delegate = delegate
+    init(delegate: MainSectionControllerDelegate, objects: [Object]) {
+        self.delegate = delegate
         self.objects = objects
         super.init()
     }
     
-    // MARK: Stored Properties
-    let objects: [Object]
-//    fileprivate unowned let delegate: MainSectionControllerDelegate
-    
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         
         return self.objects
+        
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return MainSectionController<Cell, Object>()
+        return MainSectionController<Cell, Object>(delegate: self.delegate)
     }
     
     

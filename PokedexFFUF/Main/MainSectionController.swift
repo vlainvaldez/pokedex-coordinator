@@ -12,23 +12,23 @@ import IGListKit
 
 final class MainSectionController<Cell: UICollectionViewCell, Object: ListDiffable> : ListSectionController where Cell: Configurable, Cell.Object == Object {
     
+    // MARK: Delegate Properties
+    fileprivate unowned let delegate: MainSectionControllerDelegate
+    
     fileprivate var object: Object!
     let spacing = CGFloat(20)
     
-    override init() {
+    init(delegate: MainSectionControllerDelegate) {
+        self.delegate = delegate
         super.init()
-        
         self.minimumInteritemSpacing = 1
         self.minimumLineSpacing = 1
     }
     
-    
     override func sizeForItem(at index: Int) -> CGSize {
         let width = ((collectionContext?.containerSize(for: self).width)! / 3) - 2
-        let height = 100
-        
-   
-        return CGSize(width: width, height: 100)
+
+        return CGSize(width: width, height: width)
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -44,8 +44,10 @@ final class MainSectionController<Cell: UICollectionViewCell, Object: ListDiffab
     }
     
     override func didSelectItem(at index: Int) {
-        guard let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? Cell
-            else { return }        
+        guard let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? MainCell
+            else { return }
+        
+        self.delegate.selected(cell: cell )
     }
 }
 

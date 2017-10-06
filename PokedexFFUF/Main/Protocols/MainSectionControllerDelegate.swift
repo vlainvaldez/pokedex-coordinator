@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+public protocol MainSectionControllerDelegate: class {
+    func selected(cell: MainCell)
+}

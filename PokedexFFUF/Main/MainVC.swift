@@ -20,18 +20,20 @@ final class Mainvc: JAViewController{
     fileprivate var adapter: ListAdapter!
     fileprivate var dataSource: ListAdapterDataSource!
     
+    // MARK: - Delegate Properties
+    fileprivate unowned let delegate: MainVCDelegate
     
     override func loadView() {
         self.view = MainView()
     }
     
-    init(objects: [PokemonIcon]){
+    init(delegate: MainVCDelegate, objects: [PokemonIcon]){
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
-        
         let updater: ListAdapterUpdater = ListAdapterUpdater()
         self.adapter = ListAdapter(updater: updater, viewController: self)
         self.adapter.collectionView = self.collectionView
-        self.dataSource = MainDataSource<MainCell, PokemonIcon>(objects: objects)
+        self.dataSource = MainDataSource<MainCell, PokemonIcon>(delegate: self,objects: objects)
 
         self.adapter.dataSource = self.dataSource        
     }
@@ -47,6 +49,16 @@ final class Mainvc: JAViewController{
     }
     
 }
+
+extension Mainvc: MainSectionControllerDelegate {
+    func selected(cell: MainCell) {
+        print("MainSectionControllerDelegate")
+        self.delegate.pokemonClicked(cell.pokemonIcon, view: self.rootView)
+    }
+    
+    
+}
+
 
 
 
