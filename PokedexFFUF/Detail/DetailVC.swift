@@ -49,9 +49,7 @@ fileprivate extension DetailVC {
 
 
 // MARK: Target Action Functions
-
 fileprivate extension DetailVC {
-    
     @objc func backButtonAction() {
         self.delegate.backButtonItemPressed()
     }

@@ -20,8 +20,7 @@ public final class DetailCoordinator: AbstractCoordinator {
         self.delegate = delegate
         self.navigationController = navigationController
         super.init()
-    }
-    
+    }    
     
     override public func start() {
         let vc: DetailVC = DetailVC(delegate: self)
@@ -34,6 +33,4 @@ extension DetailCoordinator: DetailVCDelegate {
         _ = self.navigationController.popViewController(animated: true)
         self.delegate.detailCoordinatorDismissView(self)
     }
-    
-    
 }
