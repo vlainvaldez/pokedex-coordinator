@@ -24,7 +24,8 @@ public final class MainView: JAView {
     
     let indicatorView: UIActivityIndicatorView = {
         let view: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        
+        view.color = CustomColors.red
+        view.backgroundColor = CustomColors.darkGrey
         view.hidesWhenStopped = true
         view.isHidden = true
         return view
@@ -55,7 +56,7 @@ public final class MainView: JAView {
             make.bottom.equalTo(self)
         }
         
-        self.indicatorView.snp.remakeConstraints { (make: ConstraintMaker) -> Void in
+        self.indicatorView.snp.makeConstraints { (make: ConstraintMaker) -> Void in
             make.center.equalToSuperview()
             make.height.equalTo(75.0)
             make.width.equalTo(75.0)

@@ -26,7 +26,7 @@ final public class MainCell: UICollectionViewCell {
     
     let footerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.blue
+        view.backgroundColor = CustomColors.darkGrey
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
