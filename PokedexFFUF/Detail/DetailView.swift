@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Rapid
+import IGListKit
 
 final class DetailView: JAView {
     
@@ -27,12 +28,22 @@ final class DetailView: JAView {
         view.selectedSegmentIndex = 0
         return view
     }()
-        
+    
+    let collectionView: UICollectionView = {
+        let segmentCollectionLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        segmentCollectionLayout.scrollDirection = .horizontal
+        segmentCollectionLayout.minimumLineSpacing = 0.0
+        let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout:segmentCollectionLayout )
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = UIColor.white
+        return collectionView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         
-        self.rpd.subviews(forAutoLayout: [segmentControl])
+        self.rpd.subviews(forAutoLayout: [self.segmentControl, self.collectionView])
         
         self.segmentControl.snp.makeConstraints { (make: ConstraintMaker) in
             make.top.equalToSuperview().offset(20)
@@ -40,6 +51,12 @@ final class DetailView: JAView {
             make.height.equalTo(30.0)
         }
         
+        self.collectionView.snp.remakeConstraints { [unowned self] (make:ConstraintMaker) -> Void in
+            make.top.equalTo(self.segmentControl.snp.bottom).offset(15.0)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }        
     }
     
     required init?(coder aDecoder: NSCoder) {

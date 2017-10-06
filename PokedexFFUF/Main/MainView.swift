@@ -49,14 +49,14 @@ public final class MainView: JAView {
         
         self.rpd.subviews(forAutoLayout: [self.collectionView, self.indicatorView])
         
-        self.collectionView.snp.makeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
+        self.collectionView.snp.remakeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
             make.top.equalTo(20.0)
             make.leading.equalTo(self).offset(10.0)
             make.trailing.equalTo(self).inset(10.0)
             make.bottom.equalTo(self)
         }
         
-        self.indicatorView.snp.makeConstraints { (make: ConstraintMaker) -> Void in
+        self.indicatorView.snp.remakeConstraints { (make: ConstraintMaker) -> Void in
             make.center.equalToSuperview()
             make.height.equalTo(75.0)
             make.width.equalTo(75.0)
