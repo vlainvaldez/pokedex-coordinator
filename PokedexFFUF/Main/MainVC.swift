@@ -44,19 +44,15 @@ final class Mainvc: JAViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Pokedex"
         
     }
-    
 }
 
 extension Mainvc: MainSectionControllerDelegate {
     func selected(cell: MainCell) {
-        print("MainSectionControllerDelegate")
         self.delegate.pokemonClicked(cell.pokemonIcon, view: self.rootView)
-    }
-    
-    
+    }    
 }
 
 

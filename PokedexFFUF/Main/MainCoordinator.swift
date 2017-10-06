@@ -51,7 +51,6 @@ extension MainCoordinator: MainVCDelegate{
         
         speciesRequestDispatcher.dispatchURLRequest().map { (speciesResponse) -> Void in
             
-            
             do{
                 let species = try Species(data: speciesResponse.data)
                 
@@ -60,11 +59,24 @@ extension MainCoordinator: MainVCDelegate{
             }catch {
                 fatalError(error.localizedDescription)
             }
+        }.onSuccess {
+            let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController)
             
+            self.add(childCoordinator: coordinator)
+            DispatchQueue.main.async {
+                coordinator.start()
+            }
         }
-        
-        
     }
+}
+
+extension MainCoordinator: DetailCoordinatorDelegate {
+    func detailCoordinatorDismissView(_ coordinator: DetailCoordinator) {
+        print("must deallocate")
+        self.remove(childCoordinator: coordinator)
+    }
+    
+    
 }
 
 
