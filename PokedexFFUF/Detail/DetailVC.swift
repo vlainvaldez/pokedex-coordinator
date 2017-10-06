@@ -23,15 +23,13 @@ final class DetailVC: JAViewController {
     override func loadView() {
         self.view = DetailView()
     }
-    
+        
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blue
-        
         self.setUpNavigationItem { [unowned self] (navigationItem: UINavigationItem) in
             
             navigationItem.leftBarButtonItem = self.rootView.backButtonItem

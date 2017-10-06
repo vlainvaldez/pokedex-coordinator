@@ -20,8 +20,8 @@ public final class MainCoordinator: AbstractCoordinator {
         super.init()
     }
     
-    public override func start() {
-        self.navigationController.navigationBar.barTintColor = UIColor.yellow
+    public override func start() {        
+        
         let csvPath: String? = Bundle.main.path(forResource: "pokemon", ofType: "csv")
         
         do {
@@ -34,8 +34,7 @@ public final class MainCoordinator: AbstractCoordinator {
             
         } catch let error {
             print(error.localizedDescription)
-        }
-        
+        }        
     }
 }
 
@@ -66,6 +65,11 @@ extension MainCoordinator: MainVCDelegate{
             DispatchQueue.main.async {
                 coordinator.start()
             }
+        }.onComplete { (result) in
+            DispatchQueue.main.async {
+                print("on complete")
+                view.stopLoadingIndicatorView()
+            }
         }
     }
 }
@@ -75,8 +79,6 @@ extension MainCoordinator: DetailCoordinatorDelegate {
         print("must deallocate")
         self.remove(childCoordinator: coordinator)
     }
-    
-    
 }
 
 

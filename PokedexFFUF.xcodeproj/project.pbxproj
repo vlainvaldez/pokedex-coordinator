@@ -35,6 +35,7 @@
 		778FECFD1F822C5100251526 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778FECFC1F822C5100251526 /* MainVC.swift */; };
 		77A192331F84A78200A7C162 /* MainSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A192321F84A78200A7C162 /* MainSectionController.swift */; };
 		77A192351F84A7A200A7C162 /* MainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A192341F84A7A200A7C162 /* MainDataSource.swift */; };
+		77CBA8CF1F877B06003F717D /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBA8CE1F877B06003F717D /* CustomColors.swift */; };
 		9BF2A503B068EC4A9B0F878F /* Pods_PokedexFFUF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2471EE03474059A4700EACDE /* Pods_PokedexFFUF.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		778FECFC1F822C5100251526 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		77A192321F84A78200A7C162 /* MainSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionController.swift; sourceTree = "<group>"; };
 		77A192341F84A7A200A7C162 /* MainDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
+		77CBA8CE1F877B06003F717D /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		7E6521685C7C75B2045F0F0C /* Pods-PokedexFFUF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokedexFFUF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokedexFFUF/Pods-PokedexFFUF.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +165,7 @@
 			children = (
 				7772388B1F8485530097F804 /* JSONKey.swift */,
 				777238901F848A340097F804 /* CSVError.swift */,
+				77CBA8CE1F877B06003F717D /* CustomColors.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				7742796F1F861B6C00DE9628 /* Species.swift in Sources */,
 				7772388C1F8485530097F804 /* JSONKey.swift in Sources */,
 				77757F8B1F83621E003CBCFF /* MainCell.swift in Sources */,
+				77CBA8CF1F877B06003F717D /* CustomColors.swift in Sources */,
 				777238941F848D710097F804 /* SequenceExtensions.swift in Sources */,
 				77666D7B1F87371C002D3F72 /* DetailVC.swift in Sources */,
 				778FECFB1F822C4400251526 /* MainCoordinator.swift in Sources */,

@@ -20,6 +20,9 @@ public class PokedexAppCoordinator: AppCoordinator<UINavigationController> {
         self.window.makeKeyAndVisible()
         
         self.rootViewController.navigationBar.isTranslucent = false
+        self.rootViewController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.rootViewController.navigationBar.barTintColor = CustomColors.red
+        self.rootViewController.navigationBar.tintColor = UIColor.white
     }
     
     override public func start() {

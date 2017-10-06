@@ -51,6 +51,7 @@ final class Mainvc: JAViewController{
 
 extension Mainvc: MainSectionControllerDelegate {
     func selected(cell: MainCell) {
+        self.rootView.showLoadingIndicatorView()
         self.delegate.pokemonClicked(cell.pokemonIcon, view: self.rootView)
     }    
 }

@@ -21,4 +21,28 @@ final class DetailView: JAView {
         return item
     }()
     
+    let segmentControl: UISegmentedControl = {
+        let view: UISegmentedControl = UISegmentedControl(items: ["Description", "Stats"])
+        view.tintColor = CustomColors.darkGrey
+        view.selectedSegmentIndex = 0
+        return view
+    }()
+        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.white
+        
+        self.rpd.subviews(forAutoLayout: [segmentControl])
+        
+        self.segmentControl.snp.makeConstraints { (make: ConstraintMaker) in
+            make.top.equalToSuperview().offset(20)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(30.0)
+        }
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
