@@ -19,10 +19,12 @@ final class DetailVC: JAViewController {
     fileprivate var adapter: ListAdapter!
     fileprivate var dataSource: ListAdapterDataSource!
     fileprivate let detailsModels: DetailModels
+    fileprivate var sectionIndex: Int
     
     init(delegate: DetailVCDelegate, models: DetailModels){
         self.detailsModels = models
         self.delegate = delegate
+        self.sectionIndex = 0
         super.init(nibName: nil, bundle: nil)
         
         let updater: ListAdapterUpdater = ListAdapterUpdater()
@@ -31,6 +33,7 @@ final class DetailVC: JAViewController {
         self.adapter.collectionView = self.collectionView
         self.adapter.dataSource = self
         self.adapter.collectionViewDelegate = self
+        
     }
     
     override func loadView() {
@@ -68,9 +71,9 @@ fileprivate extension DetailVC {
     }
     
     @objc func segmentControlPressed(_ control: UISegmentedControl) {
-        let sectionIndex: Int = control.selectedSegmentIndex
+        self.sectionIndex = control.selectedSegmentIndex
         
-        let indexPath: IndexPath = IndexPath(row: 0, section: sectionIndex)
+        let indexPath: IndexPath = IndexPath(row: 0, section: self.sectionIndex)
         
         self.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)        
     }
@@ -102,5 +105,15 @@ extension DetailVC: UICollectionViewDelegate {
         self.rootView.segmentControl.selectedSegmentIndex = index
     }
     
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        self.rootView.collectionView.collectionViewLayout.invalidateLayout()
+        
+        let indexPath: IndexPath = IndexPath(row: 0, section: self.sectionIndex)
+        
+        DispatchQueue.main.async {
+            self.rootView.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        }
+    }
 }
 
