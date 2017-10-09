@@ -7,6 +7,8 @@
 //
 
 import FSwiftParser
+import IGListKit
+import Rapid
 
 fileprivate struct Version: Decodable {
     let name: String
@@ -36,9 +38,9 @@ fileprivate struct FlavorEntries: Decodable {
     }
 }
 
-public struct Species {
+public class Species: JAObject {
     
-    let description: String
+    let pokemonDescription: String
     
     public init(data: Data) throws {
         let decoder = JSONDecoder()
@@ -49,7 +51,23 @@ public struct Species {
         
         guard let description = descriptionNode.first?.flavorText else { fatalError("No Nodes") }
         
-        self.description = description
+        self.pokemonDescription = description
     }
+}
+
+extension Species: ListDiffable {
+    public func diffIdentifier() -> NSObjectProtocol {
+        return self
+    }
+    
+    public func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        guard let object = object as? Species else { return false }
+        
+        return self.pokemonDescription == object.pokemonDescription
+    }
+    
+//    public func diffIdentifier() -> NSObjectProtocol {
+//        return self
+//    }
 }
 

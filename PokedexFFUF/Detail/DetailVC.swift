@@ -79,21 +79,20 @@ fileprivate extension DetailVC {
 extension DetailVC: ListAdapterDataSource{
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return ["foos" as ListDiffable, 55 as ListDiffable]
+
+        return [self.detailsModels.species, 55 as ListDiffable]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         
-        if object is String {
-            return DescriptionSectionController()
+        if object is Species {
+            return DescriptionSectionController(species: (object as! Species))
         }else {
             return StatsSectionController()
         }
     }
     
-    func emptyView(for listAdapter: ListAdapter) -> UIView? {
-        return nil
-    }
+    func emptyView(for listAdapter: ListAdapter) -> UIView? { return nil }
 }
 
 extension DetailVC: UICollectionViewDelegate {

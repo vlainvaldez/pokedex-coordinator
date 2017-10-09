@@ -44,8 +44,7 @@ final class Mainvc: JAViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Pokedex"
-        
+        self.title = "Pokedex"        
     }
 }
 
