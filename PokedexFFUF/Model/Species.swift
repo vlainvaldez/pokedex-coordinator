@@ -18,6 +18,11 @@ fileprivate struct Language: Decodable{
     let name: String
 }
 
+fileprivate struct EvolutionChain: Decodable {
+    let url: String
+}
+
+
 fileprivate struct FlavorText: Decodable{
     let flavorText: String
     let language: Language
@@ -32,15 +37,18 @@ fileprivate struct FlavorText: Decodable{
 
 fileprivate struct FlavorEntries: Decodable {
     let flavorEntries: [FlavorText]
+    let evolutionChain: EvolutionChain
 
     enum CodingKeys: String, CodingKey {
         case flavorEntries = "flavor_text_entries"
+        case evolutionChain = "evolution_chain"
     }
 }
 
 public class Species: JAObject {
     
     let pokemonDescription: String
+    let evolutionURL: String
     
     public init(data: Data) throws {
         let decoder = JSONDecoder()
@@ -52,6 +60,8 @@ public class Species: JAObject {
         guard let description = descriptionNode.first?.flavorText else { fatalError("No Nodes") }
         
         self.pokemonDescription = description
+        self.evolutionURL = flavorEntries.evolutionChain.url
+        
     }
 }
 
