@@ -12,18 +12,23 @@ import Rapid
 public final class DetailCoordinator: AbstractCoordinator {
     // MARK: Stored Properties
     fileprivate unowned let navigationController: UINavigationController
+    fileprivate let models: DetailModels
     
     // MARK: Delegate Properties
     fileprivate unowned let delegate: DetailCoordinatorDelegate
     
-    init(delegate:DetailCoordinatorDelegate, navigationController: UINavigationController){
+    init(delegate:DetailCoordinatorDelegate, navigationController: UINavigationController, models: DetailModels){
+        
         self.delegate = delegate
         self.navigationController = navigationController
+        self.models = models
         super.init()
+        
+        
     }    
     
     override public func start() {
-        let vc: DetailVC = DetailVC(delegate: self)
+        let vc: DetailVC = DetailVC(delegate: self, models: self.models)
         self.navigationController.pushViewController(vc, animated: true)
     }
 }

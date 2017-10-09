@@ -34,6 +34,7 @@ final class DetailView: JAView {
         segmentCollectionLayout.scrollDirection = .horizontal
         segmentCollectionLayout.minimumLineSpacing = 0.0
         let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout:segmentCollectionLayout )
+        collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor.white
         return collectionView

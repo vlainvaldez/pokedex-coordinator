@@ -48,18 +48,18 @@ extension MainCoordinator: MainVCDelegate{
         let speciesRequestDispatcher: RequestDispatcher = JSONRequestDispatcher(request: speciesRequest, builderType: JSONRequestBuilder.self, printsResponse: true)
         
         
-        speciesRequestDispatcher.dispatchURLRequest().map { (speciesResponse) -> Void in
+        speciesRequestDispatcher.dispatchURLRequest().map { (speciesResponse) -> Species in
             
             do{
                 let species = try Species(data: speciesResponse.data)
                 
-                print(species.description)
+                return species
                 
             }catch {
                 fatalError(error.localizedDescription)
             }
-        }.onSuccess {
-            let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController)
+        }.onSuccess { (species: Species) -> Void in
+            let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(species: species))
             
             self.add(childCoordinator: coordinator)
             DispatchQueue.main.async {

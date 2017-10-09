@@ -8,16 +8,29 @@
 
 import UIKit
 import Rapid
+import IGListKit
 
 final class DetailVC: JAViewController {
     
     // MARK: Delegate Properties
     fileprivate unowned let delegate: DetailVCDelegate
     
-    init(delegate: DetailVCDelegate){
+    // MARK: - Stored Properties
+    fileprivate var adapter: ListAdapter!
+    fileprivate var dataSource: ListAdapterDataSource!
+    fileprivate let detailsModels: DetailModels
+    
+    init(delegate: DetailVCDelegate, models: DetailModels){
+        self.detailsModels = models
         self.delegate = delegate
-        
         super.init(nibName: nil, bundle: nil)
+        
+        let updater: ListAdapterUpdater = ListAdapterUpdater()
+        
+        self.adapter = ListAdapter(updater: updater, viewController: self)
+        self.adapter.collectionView = self.collectionView
+        self.adapter.dataSource = self
+        self.adapter.collectionViewDelegate = self
     }
     
     override func loadView() {
@@ -37,12 +50,14 @@ final class DetailVC: JAViewController {
             self.rootView.backButtonItem.action = #selector(backButtonAction)
         }
         
+        self.setUpTargetActions(with: [self.rootView.segmentControl: #selector (DetailVC.segmentControlPressed(_:))])
     }
 }
 
 //MARK - Views
 fileprivate extension DetailVC {
     unowned var rootView: DetailView { return self.view as! DetailView }
+    unowned var collectionView: UICollectionView { return self.rootView.collectionView}
 }
 
 
@@ -52,4 +67,41 @@ fileprivate extension DetailVC {
         self.delegate.backButtonItemPressed()
     }
     
+    @objc func segmentControlPressed(_ control: UISegmentedControl) {
+        let sectionIndex: Int = control.selectedSegmentIndex
+        
+        let indexPath: IndexPath = IndexPath(row: 0, section: sectionIndex)
+        
+        self.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)        
+    }
 }
+
+extension DetailVC: ListAdapterDataSource{
+    
+    func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
+        return ["foos" as ListDiffable, 55 as ListDiffable]
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
+        
+        if object is String {
+            return DescriptionSectionController()
+        }else {
+            return StatsSectionController()
+        }
+    }
+    
+    func emptyView(for listAdapter: ListAdapter) -> UIView? {
+        return nil
+    }
+}
+
+extension DetailVC: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let index: Int = Int(targetContentOffset.pointee.x / self.view.bounds.width)
+        self.rootView.segmentControl.selectedSegmentIndex = index
+    }
+    
+}
+
