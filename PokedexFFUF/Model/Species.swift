@@ -19,7 +19,7 @@ fileprivate struct Language: Decodable{
 }
 
 fileprivate struct EvolutionChain: Decodable {
-    let url: String
+    let url: URL
 }
 
 
@@ -48,7 +48,7 @@ fileprivate struct FlavorEntries: Decodable {
 public class Species: JAObject {
     
     let pokemonDescription: String
-    let evolutionURL: String
+    let evolutionURL: URL
     
     public init(data: Data) throws {
         let decoder = JSONDecoder()
@@ -75,9 +75,5 @@ extension Species: ListDiffable {
         
         return self.pokemonDescription == object.pokemonDescription
     }
-    
-//    public func diffIdentifier() -> NSObjectProtocol {
-//        return self
-//    }
 }
 

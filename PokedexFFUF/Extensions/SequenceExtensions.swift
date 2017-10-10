@@ -28,3 +28,12 @@ extension Sequence {
         return result
     }
 }
+
+
+extension Data {
+    
+    init<T>(fromArray values: [T]) {
+        var values = values
+        self.init(buffer: UnsafeBufferPointer(start: &values, count: values.count))
+    }
+}

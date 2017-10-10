@@ -49,16 +49,29 @@ extension MainCoordinator: MainVCDelegate{
         
         
         speciesRequestDispatcher.dispatchURLRequest().map { (speciesResponse) -> Species in
-            
             do{
                 let species = try Species(data: speciesResponse.data)
-                
                 return species
-                
             }catch {
                 fatalError(error.localizedDescription)
             }
-        }.onSuccess { (species: Species) -> Void in
+        }.map{ (species: Species) -> Species in
+            let evolutionRequest: EvolutionRequest = EvolutionRequest(url: species.evolutionURL)
+            
+            let evolutionRequestDispatcher: RequestDispatcher = JSONRequestDispatcher(request: evolutionRequest, builderType: JSONRequestBuilder.self, printsResponse: true)
+            
+            evolutionRequestDispatcher.dispatchURLRequest()
+                .map { (evolutionResponse: Response) -> Void in
+                    do{
+                        let evolution: Evolution = try Evolution(data: evolutionResponse.data)
+                    }catch {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+            
+            return species
+        }
+        .onSuccess { (species: Species) -> Void in
             let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(species: species))
             
             self.add(childCoordinator: coordinator)
