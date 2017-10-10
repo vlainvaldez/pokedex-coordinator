@@ -27,11 +27,11 @@ fileprivate struct EvolutionStats: Decodable{
 }
 
 fileprivate struct EvolutionDetails: Decodable{
-    let evolutionStat: [EvolutionStats]
+    let evolutionStat: [EvolutionDetails]
     let species: Specie
     
     enum CodingKeys: String, CodingKey{
-        case evolutionStat = "evolution_details"
+        case evolutionStat = "evolves_to"
         case species
     }
 }
@@ -58,26 +58,30 @@ public struct Evolution: Parseable {
     
     var nodes: [EvolutionNode] = [EvolutionNode]()
     
-    fileprivate static func chainParser(with nextEvolution: NextEvolution ){
-       
+    fileprivate static func chainParser(with nextEvolution: [EvolutionDetails] ){
+        
+        guard let name = nextEvolution.first?.species.name else {return}
+        guard let url = nextEvolution.first?.species.url else {return}
+        
+        print("ID \(Int(url.lastPathComponent) ?? 0) NAME \(name)")
+        
+        if nextEvolution.first?.evolutionStat != nil {
+            Evolution.chainParser(with: (nextEvolution.first?.evolutionStat)!)
+        }
     }
+    
     
     public init(data: Data) throws {
         do{
            let evolutionNode = try JSONDecoder().decode(ChainEvolution.self, from: data)
-            
-            print(evolutionNode)
-            
             let pokemonId: Int = Int(evolutionNode.chain.specie.url.lastPathComponent)!
             let pokemonName: String = evolutionNode.chain.specie.name
-            print(pokemonName)
+            print("FIRST: \(pokemonName)")
             self.nodes.append(EvolutionNode(id: pokemonId, name: pokemonName))
             
             if evolutionNode.chain.evolvesTo != nil {
-                
                 if !(evolutionNode.chain.evolvesTo?.isEmpty)!{
-                    
-                    Evolution.chainParser(with: evolutionNode.chain)
+                    Evolution.chainParser(with: evolutionNode.chain.evolvesTo!)
                 }
             }
             
