@@ -88,7 +88,7 @@ extension MainCoordinator: MainVCDelegate{
                 }
                 .onSuccess { (objects: (pokemon: Pokemon, species: Species, evolution: Evolution)) -> Void in
                     
-                    let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(descriptionModel: DescriptionModel(pokemon: objects.pokemon, species: objects.species)))
+                    let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(descriptionModel: DescriptionModel(pokemon: objects.pokemon, species: objects.species, evolution: objects.evolution)))
                     
                     self.add(childCoordinator: coordinator)
                     DispatchQueue.main.async {
