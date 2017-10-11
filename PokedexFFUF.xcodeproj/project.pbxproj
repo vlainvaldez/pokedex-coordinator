@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		772831431F8DCC6000CC2678 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772831421F8DCC6000CC2678 /* Pokemon.swift */; };
 		772892D71F8C903B00CD85F5 /* EvolutionChainRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772892D61F8C903B00CD85F5 /* EvolutionChainRequest.swift */; };
 		772892D91F8C9A3000CD85F5 /* Evolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772892D81F8C9A3000CD85F5 /* Evolution.swift */; };
 		774279681F860A0100DE9628 /* PokemonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774279671F860A0100DE9628 /* PokemonRequest.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		2471EE03474059A4700EACDE /* Pods_PokedexFFUF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokedexFFUF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32609115831FBC9914127D75 /* Pods-PokedexFFUF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokedexFFUF.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokedexFFUF/Pods-PokedexFFUF.release.xcconfig"; sourceTree = "<group>"; };
+		772831421F8DCC6000CC2678 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		772892D61F8C903B00CD85F5 /* EvolutionChainRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainRequest.swift; sourceTree = "<group>"; };
 		772892D81F8C9A3000CD85F5 /* Evolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evolution.swift; sourceTree = "<group>"; };
 		774279671F860A0100DE9628 /* PokemonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonRequest.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				7742796E1F861B6C00DE9628 /* Species.swift */,
 				772892D81F8C9A3000CD85F5 /* Evolution.swift */,
 				77FFEF4B1F8CB183008791B3 /* EvolutionNode.swift */,
+				772831421F8DCC6000CC2678 /* Pokemon.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				772831431F8DCC6000CC2678 /* Pokemon.swift in Sources */,
 				77666D791F873707002D3F72 /* DetailCoordinator.swift in Sources */,
 				77666D821F873CA6002D3F72 /* DetailVCDelegate.swift in Sources */,
 				7772388F1F8488F70097F804 /* RawCSV.swift in Sources */,

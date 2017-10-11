@@ -44,45 +44,56 @@ extension MainCoordinator: MainVCDelegate{
         let speciesRequest: SpeciesRequest = SpeciesRequest(pokemonIcon: icon)
         
         let pokemonRequestDispatcher: RequestDispatcher = JSONRequestDispatcher(request: pokemonRequest, builderType: JSONRequestBuilder.self, printsResponse: true)
-        
         let speciesRequestDispatcher: RequestDispatcher = JSONRequestDispatcher(request: speciesRequest, builderType: JSONRequestBuilder.self, printsResponse: true)
         
-        
-        speciesRequestDispatcher.dispatchURLRequest().map { (speciesResponse) -> Species in
+        pokemonRequestDispatcher.dispatchURLRequest().map { (pokemonResponse) -> Pokemon in
             do{
-                let species = try Species(data: speciesResponse.data)
-                return species
-            }catch {
+                
+                 return try JSONDecoder().decode(Pokemon.self, from: pokemonResponse.data)
+            }catch{
                 fatalError(error.localizedDescription)
             }
-        }.map{ (species: Species) -> Species in
-            let evolutionRequest: EvolutionRequest = EvolutionRequest(url: species.evolutionURL)
+        }.map { (pokemon:Pokemon) -> Void in
             
-            let evolutionRequestDispatcher: RequestDispatcher = JSONRequestDispatcher(request: evolutionRequest, builderType: JSONRequestBuilder.self, printsResponse: true)
-            
-            evolutionRequestDispatcher.dispatchURLRequest()
-                .map { (evolutionResponse: Response) -> Void in
-                    do{
-                        let evolution: Evolution = try Evolution(data: evolutionResponse.data)
-                    }catch {
-                        fatalError(error.localizedDescription)
-                    }
+            speciesRequestDispatcher.dispatchURLRequest().map { (speciesResponse) -> Species in
+                do{
+                    let species = try Species(data: speciesResponse.data)
+                    return species
+                }catch {
+                    fatalError(error.localizedDescription)
                 }
-            
-            return species
-        }
-        .onSuccess { (species: Species) -> Void in
-            let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(species: species))
-            
-            self.add(childCoordinator: coordinator)
-            DispatchQueue.main.async {
-                coordinator.start()
+            }.map{ (species: Species) -> Species in
+                    let evolutionRequest: EvolutionRequest = EvolutionRequest(url: species.evolutionURL)
+                    
+                    let evolutionRequestDispatcher: RequestDispatcher = JSONRequestDispatcher(request: evolutionRequest, builderType: JSONRequestBuilder.self, printsResponse: true)
+                    
+                    evolutionRequestDispatcher.dispatchURLRequest()
+                        .map { (evolutionResponse: Response) -> Void in
+                            do{
+                                let evolution: Evolution = try Evolution(data: evolutionResponse.data)
+                                
+                            }catch {
+                                fatalError(error.localizedDescription)
+                            }
+                    }
+                    return species
+                }
+                .onSuccess { (species: Species) -> Void in
+                    let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(species: species))
+                    
+                    self.add(childCoordinator: coordinator)
+                    DispatchQueue.main.async {
+                        coordinator.start()
+                    }
+                }.onComplete { (result) in
+                    DispatchQueue.main.async {
+                        print("on complete")
+                        view.stopLoadingIndicatorView()
+                    }
             }
-        }.onComplete { (result) in
-            DispatchQueue.main.async {
-                print("on complete")
-                view.stopLoadingIndicatorView()
-            }
+                
+        }.onFailure { (error: NetworkingError) -> Void in
+            print("Error: \(error.localizedDescription)")
         }
     }
 }
