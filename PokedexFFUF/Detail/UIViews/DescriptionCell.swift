@@ -120,6 +120,16 @@ final class DescriptionCell: UICollectionViewCell {
         return view
     }()
     
+    let stackViewEvolution: UIStackView = {
+        let view: UIStackView = UIStackView()
+        view.distribution = .fillEqually
+        view.axis = .horizontal
+        view.alignment = .fill
+//        view.spacing = 2.0
+        return view
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -151,7 +161,11 @@ final class DescriptionCell: UICollectionViewCell {
             self.stackViewContainerStat.addArrangedSubview(stackViews)
         }
         
-        self.rpd.subviews(forAutoLayout: [self.imageView, self.descriptionTextView,  self.stackViewContainerStat, self.evolutionOverlay])
+        self.rpd.subviews(forAutoLayout: [self.imageView,
+                                          self.descriptionTextView,
+                                          self.stackViewContainerStat,
+                                          self.evolutionOverlay,
+                                          self.stackViewEvolution])
         
         self.imageView.snp.remakeConstraints { (make: ConstraintMaker) -> Void in
             make.top.equalToSuperview().offset(30.0)
@@ -187,6 +201,12 @@ final class DescriptionCell: UICollectionViewCell {
             make.bottom.equalToSuperview().inset(5.0)
         }
         
+        self.stackViewEvolution.snp.remakeConstraints { [unowned self](make: ConstraintMaker) -> Void in
+            make.top.equalTo(self.evolutionOverlay.snp.bottom)
+            make.width.equalTo(300.0)
+            make.height.equalTo(100.0)
+            make.centerX.equalToSuperview()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -198,6 +218,23 @@ final class DescriptionCell: UICollectionViewCell {
 extension DescriptionCell: Configurable {
     static var identifier: String  = "DescriptionCell"
     
+    func createEvolutionImage(evolution: Evolution) {
+        
+        self.stackViewEvolution.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        evolution.nodes.forEach { (evolutionNode)->Void in
+            let image: UIImage? = UIImage(named: "\(evolutionNode.id)")
+            let imageView: UIImageView = {
+                let view: UIImageView = UIImageView(image: image)
+                view.contentMode = UIViewContentMode.scaleAspectFit
+                view.clipsToBounds = true
+                return view
+            }()
+            
+            self.stackViewEvolution.addArrangedSubview(imageView)
+        }
+    }
+    
     func configure(with descriptionModel: DescriptionModel) {
         
         self.descriptionTextView.text = descriptionModel.species.pokemonDescription
@@ -206,6 +243,8 @@ extension DescriptionCell: Configurable {
         self.heightValueLabel.text = "\(descriptionModel.pokemon.height)"
         self.idValueLabel.text = "\(descriptionModel.pokemon.id)"
         self.weightValueLabel.text = "\(descriptionModel.pokemon.weight) kg"
+        
+        self.createEvolutionImage(evolution: descriptionModel.evolution)
     }
     
 }
