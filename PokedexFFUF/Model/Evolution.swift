@@ -58,16 +58,25 @@ public struct Evolution: Parseable {
     
     var nodes: [EvolutionNode] = [EvolutionNode]()
     
-    fileprivate static func chainParser(with nextEvolution: [EvolutionDetails] ){
+    fileprivate static func chainParser(with nextEvolution: [EvolutionDetails],  evolutionNodes: inout [EvolutionNode]) throws -> [EvolutionNode]{
         
-        guard let name = nextEvolution.first?.species.name else {return}
-        guard let url = nextEvolution.first?.species.url else {return}
-        
-        print("ID \(Int(url.lastPathComponent) ?? 0) NAME \(name)")
-        
-        if nextEvolution.first?.evolutionStat != nil {
-            Evolution.chainParser(with: (nextEvolution.first?.evolutionStat)!)
+        if nextEvolution.first?.species.name != nil && nextEvolution.first?.species.url != nil {
+            
+            let name = nextEvolution.first?.species.name
+            let url = nextEvolution.first?.species.url
+            
+             evolutionNodes.append(EvolutionNode(id: Int((url?.lastPathComponent)!)!, name: String(describing: name!)))
+            
+            if nextEvolution.first?.evolutionStat != nil {
+                do {
+                    _ = try Evolution.chainParser(with: (nextEvolution.first?.evolutionStat)!, evolutionNodes: &evolutionNodes)
+                    
+                }catch{
+                    fatalError(error.localizedDescription)
+                }
+            }
         }
+        return evolutionNodes
     }
     
     
@@ -76,18 +85,25 @@ public struct Evolution: Parseable {
            let evolutionNode = try JSONDecoder().decode(ChainEvolution.self, from: data)
             let pokemonId: Int = Int(evolutionNode.chain.specie.url.lastPathComponent)!
             let pokemonName: String = evolutionNode.chain.specie.name
-            print("FIRST: \(pokemonName)")
+    
             self.nodes.append(EvolutionNode(id: pokemonId, name: pokemonName))
-            
+        
             if evolutionNode.chain.evolvesTo != nil {
                 if !(evolutionNode.chain.evolvesTo?.isEmpty)!{
-                    Evolution.chainParser(with: evolutionNode.chain.evolvesTo!)
+                    
+                    do {
+                        let evolutions = try Evolution.chainParser(with: evolutionNode.chain.evolvesTo!, evolutionNodes: &self.nodes)
+                        
+                        self.nodes = evolutions
+                        
+                    }catch {
+                        fatalError(error.localizedDescription)
+                    }
                 }
             }
             
         }catch{
             fatalError(error.localizedDescription)
         }
-        
     }
 }
