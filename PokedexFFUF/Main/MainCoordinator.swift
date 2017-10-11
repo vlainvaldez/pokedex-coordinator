@@ -10,6 +10,7 @@ import UIKit
 import Rapid
 import FSwiftNetworking
 import FSwiftParser
+import BrightFutures
 
 public final class MainCoordinator: AbstractCoordinator {
     
@@ -62,24 +63,32 @@ extension MainCoordinator: MainVCDelegate{
                 }catch {
                     fatalError(error.localizedDescription)
                 }
-            }.map{ (species: Species) -> Species in
+            }.map{ (species: Species) -> Future<(Species,Evolution), NetworkingError> in
                     let evolutionRequest: EvolutionRequest = EvolutionRequest(url: species.evolutionURL)
                     
                     let evolutionRequestDispatcher: RequestDispatcher = JSONRequestDispatcher(request: evolutionRequest, builderType: JSONRequestBuilder.self, printsResponse: true)
                     
-                    evolutionRequestDispatcher.dispatchURLRequest()
-                        .map { (evolutionResponse: Response) -> Void in
+                    return evolutionRequestDispatcher.dispatchURLRequest()
+                        .map { (evolutionResponse: Response) -> (Species, Evolution) in
                             do{
                                 let evolution: Evolution = try Evolution(data: evolutionResponse.data)
+                                
+                                return (species, evolution)
                                 
                             }catch {
                                 fatalError(error.localizedDescription)
                             }
                     }
-                    return species
                 }
-                .onSuccess { (species: Species) -> Void in
-                    let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(species: species))
+                .flatMap{ (future: Future<(Species, Evolution), NetworkingError >) -> Future<(Pokemon, Species, Evolution), NetworkingError> in
+                    
+                    return future.map { (objects: (species: Species, evolution: Evolution)) -> (Pokemon, Species, Evolution) in
+                        
+                        return (pokemon, objects.species, objects.evolution)
+                    }
+                }
+                .onSuccess { (objects: (pokemon: Pokemon, species: Species, evolution: Evolution)) -> Void in
+                    let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(species: objects.species))
                     
                     self.add(childCoordinator: coordinator)
                     DispatchQueue.main.async {
