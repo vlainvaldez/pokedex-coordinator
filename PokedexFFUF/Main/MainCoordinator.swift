@@ -49,8 +49,7 @@ extension MainCoordinator: MainVCDelegate{
         
         pokemonRequestDispatcher.dispatchURLRequest().map { (pokemonResponse) -> Pokemon in
             do{
-                
-                 return try JSONDecoder().decode(Pokemon.self, from: pokemonResponse.data)
+                 return try Pokemon(data: pokemonResponse.data)
             }catch{
                 fatalError(error.localizedDescription)
             }
@@ -88,7 +87,8 @@ extension MainCoordinator: MainVCDelegate{
                     }
                 }
                 .onSuccess { (objects: (pokemon: Pokemon, species: Species, evolution: Evolution)) -> Void in
-                    let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(species: objects.species))
+                    
+                    let coordinator: DetailCoordinator = DetailCoordinator(delegate: self, navigationController: self.navigationController, models: DetailModels(descriptionModel: DescriptionModel(pokemon: objects.pokemon, species: objects.species)))
                     
                     self.add(childCoordinator: coordinator)
                     DispatchQueue.main.async {

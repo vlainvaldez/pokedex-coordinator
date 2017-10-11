@@ -7,5 +7,9 @@
 //
 
 public struct DetailModels {
-    let species: Species
+    let descriptionModel: DescriptionModel    
 }
+
+
+
+

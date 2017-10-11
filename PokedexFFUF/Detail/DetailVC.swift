@@ -83,13 +83,14 @@ extension DetailVC: ListAdapterDataSource{
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
 
-        return [self.detailsModels.species, 55 as ListDiffable]
+        return [self.detailsModels.descriptionModel, 55 as ListDiffable]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         
-        if object is Species {
-            return DescriptionSectionController(species: (object as! Species))
+        if object is DescriptionModel {            
+            
+            return DescriptionSectionController(descriptionModel: object as! DescriptionModel)
         }else {
             return StatsSectionController()
         }

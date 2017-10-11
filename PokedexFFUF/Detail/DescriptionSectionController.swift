@@ -10,10 +10,10 @@ import IGListKit
 
 class DescriptionSectionController: ListSectionController {
     
-    fileprivate let species: Species
+    fileprivate let desciptionModel: DescriptionModel
     
-    init(species: Species) {
-        self.species = species
+    init(descriptionModel: DescriptionModel) {
+        self.desciptionModel = descriptionModel
     }
     
     override func numberOfItems() -> Int {
@@ -29,7 +29,7 @@ class DescriptionSectionController: ListSectionController {
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         let cell = collectionContext?.dequeueReusableCell(of: DescriptionCell.self, for: self, at: index) as! DescriptionCell
         
-        cell.configure(with: self.species)
+        cell.configure(with: self.desciptionModel)
         
         return cell
     }

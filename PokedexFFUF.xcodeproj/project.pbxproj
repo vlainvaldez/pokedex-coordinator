@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		772831431F8DCC6000CC2678 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772831421F8DCC6000CC2678 /* Pokemon.swift */; };
+		772831451F8DFBA300CC2678 /* DescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772831441F8DFBA300CC2678 /* DescriptionModel.swift */; };
 		772892D71F8C903B00CD85F5 /* EvolutionChainRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772892D61F8C903B00CD85F5 /* EvolutionChainRequest.swift */; };
 		772892D91F8C9A3000CD85F5 /* Evolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772892D81F8C9A3000CD85F5 /* Evolution.swift */; };
 		774279681F860A0100DE9628 /* PokemonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774279671F860A0100DE9628 /* PokemonRequest.swift */; };
@@ -52,6 +53,7 @@
 		2471EE03474059A4700EACDE /* Pods_PokedexFFUF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokedexFFUF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32609115831FBC9914127D75 /* Pods-PokedexFFUF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokedexFFUF.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokedexFFUF/Pods-PokedexFFUF.release.xcconfig"; sourceTree = "<group>"; };
 		772831421F8DCC6000CC2678 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		772831441F8DFBA300CC2678 /* DescriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModel.swift; sourceTree = "<group>"; };
 		772892D61F8C903B00CD85F5 /* EvolutionChainRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainRequest.swift; sourceTree = "<group>"; };
 		772892D81F8C9A3000CD85F5 /* Evolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evolution.swift; sourceTree = "<group>"; };
 		774279671F860A0100DE9628 /* PokemonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonRequest.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				778838E21F8B42EB006A2398 /* DetailModels.swift */,
+				772831441F8DFBA300CC2678 /* DescriptionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				777238891F8482480097F804 /* PokemonIcon.swift in Sources */,
 				772892D71F8C903B00CD85F5 /* EvolutionChainRequest.swift in Sources */,
 				7742796D1F86184A00DE9628 /* SpeciesRequest.swift in Sources */,
+				772831451F8DFBA300CC2678 /* DescriptionModel.swift in Sources */,
 				778FECE41F820F6F00251526 /* AppDelegate.swift in Sources */,
 				778FECFD1F822C5100251526 /* MainVC.swift in Sources */,
 				7742796B1F860AEF00DE9628 /* BasedConfiguration.swift in Sources */,

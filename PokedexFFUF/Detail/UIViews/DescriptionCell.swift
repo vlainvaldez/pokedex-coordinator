@@ -17,7 +17,6 @@ final class DescriptionCell: UICollectionViewCell {
         let view: UIImageView = UIImageView()
         view.contentMode = UIViewContentMode.scaleAspectFit
         view.clipsToBounds = true
-        view.backgroundColor = UIColor.red
         return view
     }()
     
@@ -61,11 +60,10 @@ final class DescriptionCell: UICollectionViewCell {
 extension DescriptionCell: Configurable {
     static var identifier: String  = "DescriptionCell"
     
-    func configure(with species: Species) {
+    func configure(with descriptionModel: DescriptionModel) {
         
-        print(species.pokemonDescription)
-        
-        self.descriptionTextView.text = species.pokemonDescription
+        self.descriptionTextView.text = descriptionModel.species.pokemonDescription
+        self.imageView.image = UIImage(named: String(descriptionModel.pokemon.id))
     }
     
 }
