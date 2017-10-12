@@ -22,3 +22,13 @@ final class StatsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension StatsCell: Configurable {
+    static var identifier: String  = "StatCell"
+    
+    func configure(with statModel: StatModel) {
+        
+        print(statModel.pokemon.stats)
+        
+    }
+}

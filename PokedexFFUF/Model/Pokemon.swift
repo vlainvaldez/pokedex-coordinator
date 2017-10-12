@@ -10,6 +10,24 @@ import FSwiftParser
 import IGListKit
 import Rapid
 
+struct StatDetail: Decodable {
+    let url: String
+    let name: String
+}
+
+struct Stats: Decodable {
+    let statDetail: StatDetail
+    let effort: Int
+    let baseStat: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case statDetail = "stat"
+        case effort
+        case baseStat = "base_stat"
+    }
+}
+
+
 struct TypeDetail: Decodable {
     let name: String
 }
@@ -32,6 +50,7 @@ fileprivate struct PokemonDecodable: Decodable {
     let height: Int
     let weight: Int
     let types: [Types]
+    let stats: [Stats]
 }
 
 public class Pokemon: JAObject {
@@ -40,6 +59,7 @@ public class Pokemon: JAObject {
     let height: Int
     let weight: Int
     let types: [Types]
+    let stats: [Stats]
     
     public required init(data: Data) throws {
         do{
@@ -50,6 +70,7 @@ public class Pokemon: JAObject {
             self.height = pokemonDecodable.height
             self.weight = pokemonDecodable.weight
             self.types = pokemonDecodable.types
+            self.stats = pokemonDecodable.stats
             
         }catch {
             fatalError(error.localizedDescription)

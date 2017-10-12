@@ -10,6 +10,12 @@ import IGListKit
 
 class StatsSectionController: ListSectionController {
     
+    fileprivate let statModel: StatModel
+    
+    init(statModel: StatModel) {
+        self.statModel = statModel
+    }
+    
     override func numberOfItems() -> Int {
         return 1
     }
@@ -22,6 +28,8 @@ class StatsSectionController: ListSectionController {
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         let cell = collectionContext?.dequeueReusableCell(of: StatsCell.self, for: self, at: index) as! StatsCell
+        
+        cell.configure(with: self.statModel)
         
         return cell
     }

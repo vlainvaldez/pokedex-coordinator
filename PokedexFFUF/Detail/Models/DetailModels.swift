@@ -7,7 +7,8 @@
 //
 
 public struct DetailModels {
-    let descriptionModel: DescriptionModel    
+    let descriptionModel: DescriptionModel
+    let statModel: StatModel
 }
 
 
