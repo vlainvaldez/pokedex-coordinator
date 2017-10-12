@@ -247,20 +247,6 @@ extension DescriptionCell: Configurable {
         
         self.createEvolutionImage(evolution: descriptionModel.evolution)
         
-        var typeValue: String = ""
-        
-        
-        
-        
-        for (index, value )in descriptionModel.pokemon.types.enumerated(){
-            
-            if index == 0 {
-                typeValue.append(value.typeDetail.name.capitalized)
-            }else{
-                typeValue.append("/\(value.typeDetail.name.capitalized)")
-            }
-        }
-        
         self.typeValueLabel.adjustsFontSizeToFitWidth = true
         self.typeValueLabel.text = self.setTypeText(types: descriptionModel.pokemon.types)
     }
