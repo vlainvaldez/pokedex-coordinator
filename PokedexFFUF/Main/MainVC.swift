@@ -35,7 +35,8 @@ final class Mainvc: JAViewController{
         self.adapter.collectionView = self.collectionView
         self.dataSource = MainDataSource<MainCell, PokemonIcon>(delegate: self,objects: objects)
 
-        self.adapter.dataSource = self.dataSource        
+        self.adapter.dataSource = self.dataSource
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,7 +45,9 @@ final class Mainvc: JAViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Pokedex"        
+        self.title = "Pokedex"
+        
+        self.navigationItem.rightBarButtonItem = self.rootView.infoBarButtonItem
     }
 }
 

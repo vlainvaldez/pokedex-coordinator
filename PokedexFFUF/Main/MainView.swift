@@ -31,6 +31,18 @@ public final class MainView: JAView {
         return view
     }()
     
+    let infoButton: UIButton = {
+        let view: UIButton = UIButton(type: UIButtonType.system)
+        view.setTitle("Info", for: .normal)
+        view.setTitleColor(CustomColors.darkGrey, for: .normal)
+        return view
+    }()
+    
+    lazy var infoBarButtonItem: UIBarButtonItem = {
+        let view: UIBarButtonItem = UIBarButtonItem(customView: self.infoButton)
+        return view
+    }()
+    
     func showLoadingIndicatorView(){
         self.indicatorView.isHidden = false
         self.indicatorView.startAnimating()
@@ -41,6 +53,7 @@ public final class MainView: JAView {
         self.indicatorView.stopAnimating()
         self.isUserInteractionEnabled = true
     }
+    
     
     
     public override init(frame: CGRect) {
@@ -61,6 +74,7 @@ public final class MainView: JAView {
             make.height.equalTo(75.0)
             make.width.equalTo(75.0)
         }
+        
         
     }
     
