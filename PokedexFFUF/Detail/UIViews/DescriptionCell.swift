@@ -101,8 +101,8 @@ final class DescriptionCell: UICollectionViewCell {
     let stackViewContainerStat: UIStackView = {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 10
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -183,7 +183,8 @@ final class DescriptionCell: UICollectionViewCell {
         
         self.stackViewContainerStat.snp.remakeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
             make.top.equalTo(self.descriptionTextView.snp.bottom)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         self.evolutionOverlay.snp.remakeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
@@ -245,6 +246,34 @@ extension DescriptionCell: Configurable {
         self.weightValueLabel.text = "\(descriptionModel.pokemon.weight) kg"
         
         self.createEvolutionImage(evolution: descriptionModel.evolution)
+        
+        var typeValue: String = ""
+        
+        
+        
+        
+        for (index, value )in descriptionModel.pokemon.types.enumerated(){
+            
+            if index == 0 {
+                typeValue.append(value.typeDetail.name.capitalized)
+            }else{
+                typeValue.append("/\(value.typeDetail.name.capitalized)")
+            }
+        }
+        
+        self.typeValueLabel.adjustsFontSizeToFitWidth = true
+        self.typeValueLabel.text = self.setTypeText(types: descriptionModel.pokemon.types)
     }
     
+    func setTypeText(types: [Types])-> String {
+        var typeValue: String = ""
+        for (index, value )in types.enumerated(){
+            if index == 0 {
+                typeValue.append(value.typeDetail.name.capitalized)
+            }else{
+                typeValue.append("/\(value.typeDetail.name.capitalized)")
+            }
+        }
+        return typeValue
+    }
 }

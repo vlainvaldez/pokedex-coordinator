@@ -10,11 +10,28 @@ import FSwiftParser
 import IGListKit
 import Rapid
 
+struct TypeDetail: Decodable {
+    let name: String
+}
+
+
+struct Types: Decodable {
+    let slot: Int
+    let typeDetail: TypeDetail
+    
+    enum CodingKeys: String, CodingKey {
+        case slot
+        case typeDetail = "type"
+    }
+    
+}
+
 fileprivate struct PokemonDecodable: Decodable {
     let id: Int
     let name: String
     let height: Int
     let weight: Int
+    let types: [Types]
 }
 
 public class Pokemon: JAObject {
@@ -22,6 +39,7 @@ public class Pokemon: JAObject {
     let name: String
     let height: Int
     let weight: Int
+    let types: [Types]
     
     public required init(data: Data) throws {
         do{
@@ -31,6 +49,7 @@ public class Pokemon: JAObject {
             self.name = pokemonDecodable.name
             self.height = pokemonDecodable.height
             self.weight = pokemonDecodable.weight
+            self.types = pokemonDecodable.types
             
         }catch {
             fatalError(error.localizedDescription)
