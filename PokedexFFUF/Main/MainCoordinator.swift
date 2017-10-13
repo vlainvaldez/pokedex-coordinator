@@ -40,6 +40,16 @@ public final class MainCoordinator: AbstractCoordinator {
 }
 
 extension MainCoordinator: MainVCDelegate{
+    public func infoClicked() {
+        let coordinator: InfoCoordinator = InfoCoordinator(navigationController: self.navigationController)
+        
+        self.add(childCoordinator: coordinator)
+        
+        DispatchQueue.main.async {
+            coordinator.start()
+        }
+    }
+    
     public func pokemonClicked(_ icon: PokemonIcon, view: MainView) {
         let pokemonRequest: PokemonRequest = PokemonRequest(pokemonIcon: icon)
         let speciesRequest: SpeciesRequest = SpeciesRequest(pokemonIcon: icon)

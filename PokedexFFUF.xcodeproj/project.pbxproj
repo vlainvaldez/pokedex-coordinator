@@ -46,6 +46,9 @@
 		77A192331F84A78200A7C162 /* MainSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A192321F84A78200A7C162 /* MainSectionController.swift */; };
 		77A192351F84A7A200A7C162 /* MainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A192341F84A7A200A7C162 /* MainDataSource.swift */; };
 		77CBA8CF1F877B06003F717D /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBA8CE1F877B06003F717D /* CustomColors.swift */; };
+		77EABEFA1F9068D700F22667 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EABEF91F9068D700F22667 /* InfoVC.swift */; };
+		77EABEFC1F9069D800F22667 /* InfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EABEFB1F9069D800F22667 /* InfoCoordinator.swift */; };
+		77EABEFF1F906FAA00F22667 /* InfoVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EABEFE1F906FAA00F22667 /* InfoVCDelegate.swift */; };
 		77FFEF4C1F8CB183008791B3 /* EvolutionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FFEF4B1F8CB183008791B3 /* EvolutionNode.swift */; };
 		9BF2A503B068EC4A9B0F878F /* Pods_PokedexFFUF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2471EE03474059A4700EACDE /* Pods_PokedexFFUF.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +97,9 @@
 		77A192321F84A78200A7C162 /* MainSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionController.swift; sourceTree = "<group>"; };
 		77A192341F84A7A200A7C162 /* MainDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
 		77CBA8CE1F877B06003F717D /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		77EABEF91F9068D700F22667 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
+		77EABEFB1F9069D800F22667 /* InfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCoordinator.swift; sourceTree = "<group>"; };
+		77EABEFE1F906FAA00F22667 /* InfoVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVCDelegate.swift; sourceTree = "<group>"; };
 		77FFEF4B1F8CB183008791B3 /* EvolutionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionNode.swift; sourceTree = "<group>"; };
 		7E6521685C7C75B2045F0F0C /* Pods-PokedexFFUF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokedexFFUF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokedexFFUF/Pods-PokedexFFUF.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -264,6 +270,7 @@
 				778FECF61F82112900251526 /* Supporting Files */,
 				777238871F8481830097F804 /* Model */,
 				778FECF51F82111200251526 /* AppControllers */,
+				77EABEF81F9068B800F22667 /* Info */,
 				77666D771F8733BB002D3F72 /* Detail */,
 				778FECF91F822C0E00251526 /* Main */,
 			);
@@ -303,6 +310,24 @@
 				776EBC7A1F85CA4D00CC9911 /* Protocols */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		77EABEF81F9068B800F22667 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				77EABEF91F9068D700F22667 /* InfoVC.swift */,
+				77EABEFB1F9069D800F22667 /* InfoCoordinator.swift */,
+				77EABEFD1F906F9400F22667 /* Protocols */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		77EABEFD1F906F9400F22667 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				77EABEFE1F906FAA00F22667 /* InfoVCDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,12 +491,14 @@
 				778FECE41F820F6F00251526 /* AppDelegate.swift in Sources */,
 				778FECFD1F822C5100251526 /* MainVC.swift in Sources */,
 				7742796B1F860AEF00DE9628 /* BasedConfiguration.swift in Sources */,
+				77EABEFC1F9069D800F22667 /* InfoCoordinator.swift in Sources */,
 				778838DE1F8B3FE8006A2398 /* DescriptionCell.swift in Sources */,
 				7742796F1F861B6C00DE9628 /* Species.swift in Sources */,
 				7772388C1F8485530097F804 /* JSONKey.swift in Sources */,
 				772892D91F8C9A3000CD85F5 /* Evolution.swift in Sources */,
 				77757F8B1F83621E003CBCFF /* MainCell.swift in Sources */,
 				77CBA8CF1F877B06003F717D /* CustomColors.swift in Sources */,
+				77EABEFA1F9068D700F22667 /* InfoVC.swift in Sources */,
 				777238941F848D710097F804 /* SequenceExtensions.swift in Sources */,
 				77FFEF4C1F8CB183008791B3 /* EvolutionNode.swift in Sources */,
 				778838E31F8B42EB006A2398 /* DetailModels.swift in Sources */,
@@ -481,6 +508,7 @@
 				77666D7B1F87371C002D3F72 /* DetailVC.swift in Sources */,
 				778FECFB1F822C4400251526 /* MainCoordinator.swift in Sources */,
 				777238911F848A340097F804 /* CSVError.swift in Sources */,
+				77EABEFF1F906FAA00F22667 /* InfoVCDelegate.swift in Sources */,
 				77A192331F84A78200A7C162 /* MainSectionController.swift in Sources */,
 				77666D7D1F87372F002D3F72 /* DetailView.swift in Sources */,
 				77757F891F832C9A003CBCFF /* MainView.swift in Sources */,

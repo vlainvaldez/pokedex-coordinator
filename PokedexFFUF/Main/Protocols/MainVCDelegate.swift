@@ -9,5 +9,6 @@
 import UIKit
 
 public protocol MainVCDelegate: class {
-    func pokemonClicked(_ icon: PokemonIcon, view: MainView)
+    func pokemonClicked(_ icon: PokemonIcon, view: MainView)    
+    func infoClicked()
 }

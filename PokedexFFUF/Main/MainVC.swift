@@ -15,6 +15,7 @@ final class Mainvc: JAViewController{
     // MARK: - IBOutlets
     unowned var rootView: MainView { return self.view as! MainView}
     unowned var collectionView: UICollectionView { return self.rootView.collectionView }
+    unowned var infoButton: UIButton { return self.rootView.infoButton }
     
     // MARK: - Stored Properties
     fileprivate var adapter: ListAdapter!
@@ -48,6 +49,12 @@ final class Mainvc: JAViewController{
         self.title = "Pokedex"
         
         self.navigationItem.rightBarButtonItem = self.rootView.infoBarButtonItem
+        
+        self.setUpTargetActions(with: [self.infoButton: #selector(Mainvc.infoTapped)])
+    }
+    
+    @objc func infoTapped(_ sender: UIButton){
+        self.delegate.infoClicked()
     }
 }
 
