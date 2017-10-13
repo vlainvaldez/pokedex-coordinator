@@ -32,7 +32,7 @@ final class MainDataSource<Cell: UICollectionViewCell, Object: ListDiffable>: JA
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         
-        print("A PokemonIcon \(object)")
+//        print("A PokemonIcon \(object)")
         
         return MainSectionController<Cell, Object>(delegate: self.delegate)
     }
