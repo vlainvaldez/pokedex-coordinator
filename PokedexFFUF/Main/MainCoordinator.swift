@@ -72,7 +72,6 @@ extension MainCoordinator: MainVCDelegate{
             ])
         
         vc.view.backgroundColor = UIColor.white
-        
         DispatchQueue.main.async {
             self.navigationController.pushViewController(vc, animated: true)
         }

@@ -15,7 +15,7 @@ public class PokedexAppCoordinator: AppCoordinator<UINavigationController> {
     public override init(window: UIWindow, rootViewController: UINavigationController) {
         super.init(window: window, rootViewController: rootViewController)
         
-        self.window.backgroundColor = UIColor.blue
+        self.window.backgroundColor = UIColor.white
         self.window.rootViewController = self.rootViewController
         self.window.makeKeyAndVisible()
         
