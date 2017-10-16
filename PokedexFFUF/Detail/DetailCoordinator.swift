@@ -33,9 +33,9 @@ public final class DetailCoordinator: AbstractCoordinator {
         var navigationBarColor: UIColor?
         
         if self.models.descriptionModel.pokemon.types.count > 1 {
-            navigationBarColor = PokemonType(rawValue: self.models.descriptionModel.pokemon.types[1].typeDetail.name)?.color
+            navigationBarColor = self.models.descriptionModel.pokemon.types[1].typeDetail.pokemonType.color
         }else{
-            navigationBarColor = PokemonType(rawValue: self.models.descriptionModel.pokemon.types[0].typeDetail.name)?.color
+            navigationBarColor = self.models.descriptionModel.pokemon.types[0].typeDetail.pokemonType.color
         }
         
         self.navigationController.navigationBar.barTintColor = navigationBarColor

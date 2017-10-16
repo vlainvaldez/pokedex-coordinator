@@ -30,6 +30,10 @@ struct Stats: Decodable {
 
 struct TypeDetail: Decodable {
     let name: String
+    
+    var pokemonType: PokemonType {
+        return PokemonType(rawValue: self.name)!
+    }
 }
 
 

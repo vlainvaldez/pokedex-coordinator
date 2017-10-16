@@ -254,9 +254,9 @@ extension DescriptionCell: Configurable {
         var navigationBarColor: UIColor?
         
         if descriptionModel.pokemon.types.count > 1 {
-            navigationBarColor = PokemonType(rawValue: descriptionModel.pokemon.types[1].typeDetail.name)?.color
+            navigationBarColor = descriptionModel.pokemon.types[1].typeDetail.pokemonType.color
         }else{
-            navigationBarColor = PokemonType(rawValue: descriptionModel.pokemon.types[0].typeDetail.name)?.color
+            navigationBarColor = descriptionModel.pokemon.types[0].typeDetail.pokemonType.color
         }
         
         self.evolutionOverlay.backgroundColor = navigationBarColor
