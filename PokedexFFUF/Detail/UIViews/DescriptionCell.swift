@@ -249,6 +249,17 @@ extension DescriptionCell: Configurable {
         
         self.typeValueLabel.adjustsFontSizeToFitWidth = true
         self.typeValueLabel.text = self.setTypeText(types: descriptionModel.pokemon.types)
+        
+        
+        var navigationBarColor: UIColor?
+        
+        if descriptionModel.pokemon.types.count > 1 {
+            navigationBarColor = PokemonType(rawValue: descriptionModel.pokemon.types[1].typeDetail.name)?.color
+        }else{
+            navigationBarColor = PokemonType(rawValue: descriptionModel.pokemon.types[0].typeDetail.name)?.color
+        }
+        
+        self.evolutionOverlay.backgroundColor = navigationBarColor
     }
     
     func setTypeText(types: [Types])-> String {
@@ -262,4 +273,5 @@ extension DescriptionCell: Configurable {
         }
         return typeValue
     }
+    
 }

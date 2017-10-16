@@ -15,6 +15,7 @@
 		7742796B1F860AEF00DE9628 /* BasedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7742796A1F860AEF00DE9628 /* BasedConfiguration.swift */; };
 		7742796D1F86184A00DE9628 /* SpeciesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7742796C1F86184A00DE9628 /* SpeciesRequest.swift */; };
 		7742796F1F861B6C00DE9628 /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7742796E1F861B6C00DE9628 /* Species.swift */; };
+		7753A4911F9450BC00554581 /* PokemonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753A4901F9450BC00554581 /* PokemonType.swift */; };
 		77666D791F873707002D3F72 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77666D781F873707002D3F72 /* DetailCoordinator.swift */; };
 		77666D7B1F87371C002D3F72 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77666D7A1F87371C002D3F72 /* DetailVC.swift */; };
 		77666D7D1F87372F002D3F72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77666D7C1F87372F002D3F72 /* DetailView.swift */; };
@@ -65,6 +66,7 @@
 		7742796A1F860AEF00DE9628 /* BasedConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasedConfiguration.swift; sourceTree = "<group>"; };
 		7742796C1F86184A00DE9628 /* SpeciesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesRequest.swift; sourceTree = "<group>"; };
 		7742796E1F861B6C00DE9628 /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
+		7753A4901F9450BC00554581 /* PokemonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonType.swift; sourceTree = "<group>"; };
 		77666D781F873707002D3F72 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		77666D7A1F87371C002D3F72 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		77666D7C1F87372F002D3F72 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				7772388B1F8485530097F804 /* JSONKey.swift */,
 				777238901F848A340097F804 /* CSVError.swift */,
 				77CBA8CE1F877B06003F717D /* CustomColors.swift */,
+				7753A4901F9450BC00554581 /* PokemonType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				77FFEF4C1F8CB183008791B3 /* EvolutionNode.swift in Sources */,
 				778838E31F8B42EB006A2398 /* DetailModels.swift in Sources */,
 				778838E71F8B4D32006A2398 /* StatsSectionController.swift in Sources */,
+				7753A4911F9450BC00554581 /* PokemonType.swift in Sources */,
 				778838E51F8B4CF8006A2398 /* DescriptionSectionController.swift in Sources */,
 				778838E01F8B3FF9006A2398 /* StatsCell.swift in Sources */,
 				77666D7B1F87371C002D3F72 /* DetailVC.swift in Sources */,

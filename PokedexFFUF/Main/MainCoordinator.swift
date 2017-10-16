@@ -151,6 +151,7 @@ extension MainCoordinator: MainVCDelegate{
             }
                 
         }.onFailure { (error: NetworkingError) -> Void in
+            view.stopLoadingIndicatorView()
             print("Error: \(error.localizedDescription)")
         }
     }
@@ -160,6 +161,8 @@ extension MainCoordinator: DetailCoordinatorDelegate {
     func detailCoordinatorDismissView(_ coordinator: DetailCoordinator) {
         print("must deallocate")
         self.remove(childCoordinator: coordinator)
+        self.navigationController.navigationBar.barTintColor = CustomColors.red
+        
     }
 }
 

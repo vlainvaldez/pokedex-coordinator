@@ -51,6 +51,7 @@ final class DetailVC: JAViewController {
             navigationItem.leftBarButtonItem = self.rootView.backButtonItem
             self.rootView.backButtonItem.target = self
             self.rootView.backButtonItem.action = #selector(backButtonAction)
+            
         }
         
         self.setUpTargetActions(with: [self.rootView.segmentControl: #selector (DetailVC.segmentControlPressed(_:))])
